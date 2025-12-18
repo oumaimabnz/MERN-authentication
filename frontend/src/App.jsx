@@ -4,8 +4,8 @@ import Nabvar from './components/Nabvar'
 import Home from "./pages/Home"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
-import axios from 'axios'
 import NotFound from './components/NotFound'
+import api from './api/axios'
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -17,7 +17,7 @@ const App = () => {
       const token = localStorage.getItem("token")
       if (token) {
         try {
-          const res = await axios.get('/api/users/me', {
+          const res = await api.get('/api/users/me', {
             headers: {Authorization: `Bearer ${token}`}
           })
           setUser(res.data)

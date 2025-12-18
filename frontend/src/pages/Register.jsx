@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import api from '../api/axios'
 
 const Register = ({ setUser }) => {
     const[formData, setFormData] = useState({
@@ -18,7 +18,7 @@ const Register = ({ setUser }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const res = await axios.post("/api/users/register", formData)
+            const res = await api.post("/api/users/register", formData);
             localStorage.setItem('token', res.data.token)
             console.log(res.data)
             setUser(res.data)
